@@ -40,11 +40,11 @@ export class UserEntity extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  // @ObjectIdColumn()
-  // id: string;
-
   @Column({ length: 500 })
   name: string;
+  
+  // @Column({ length: 500 })
+  // test: string;
 
   @OneToMany( type => BookEntity , book => book.user)
   books: BookEntity[];

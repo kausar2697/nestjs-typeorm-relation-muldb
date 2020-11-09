@@ -85,16 +85,20 @@ export class UsersService {
 
   //relation.........................................................................abnf
 
-  async insert(userDetails: CreateUserDto){
+  async insert(userDetails: any){
     const userEntity = new UserEntity()
     const {name } = userDetails;
     userEntity.name = name;
-    await this.userEntityRepository.save(userEntity);
+    await this.userEntityRepository.save(userDetails);
+    console.log("typeof..........",typeof(userEntity));
+    
     return userEntity;
   }
 
   async getAllUsers(){
-    return await this.userEntityRepository.find();
+    // return await this.userEntityRepository.find();
+    return await this.userEntityRepository.createQueryBuilder("user")
+    .getMany();
   }
 
   async getBooksOfUser(userID: number){
